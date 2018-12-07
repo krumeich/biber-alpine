@@ -1,4 +1,4 @@
-= Build biber under Alpine Linux
+= Building biber under Alpine Linux
 
 The TeX Live dsitribution does not provide biber for MUSL based Linux distros such as Alpine.
 
