@@ -1,8 +1,10 @@
 = Building biber under Alpine Linux
 
-The TeX Live dsitribution does not provide biber for MUSL based Linux distros such as Alpine.
+The TeX Live distribution does not provide biber for MUSL based Linux distros
+such as Alpine.
 
-This project provides the means to build biber under Alpine Linux from the source. Run
+This project provides the means to build biber under Alpine Linux from the
+source. Run
 
 ----
 docker build -t krumeich/biber-alpine .

@@ -7,3 +7,5 @@ perl ./Build.PL
 ./Build installdeps
 ./Build test
 ./Build install
+
+tar czvf /opt/biber.tar.gz -C / /usr/local/
