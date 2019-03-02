@@ -1,11 +1,13 @@
 #!/bin/sh
 
-curl -L https://sourceforge.net/projects/biblatex-biber/files/biblatex-biber/current/biblatex-biber.tar.gz/download | \
-    tar xz --strip 1 -C /biber
+BIBER_BRANCH=${branch:-master}
+
+echo "Building branch: ${BIBER_BRANCH}"
+
+git clone https://github.com/krumeich/biber.git
+cd biber
+git checkout ${BIBER_BRANCH}
 
 perl ./Build.PL
-./Build installdeps
-./Build test
-./Build install
-
-tar czvf /opt/biber.tar.gz -C / /usr/local/
+./Build installdeps && ./Build test && ./Build install && \
+cd ./dist/linux_x86_64-musl && ./build.sh && cp biber-linux_x86_64-musl /usr/local/bin

@@ -1,30 +1,60 @@
-FROM alpine
+FROM alpine:3.8
 
 RUN apk update && apk upgrade
 
-RUN apk add curl make gcc musl-dev openssl openssl-dev libxslt \
-    libxslt-dev libgcrypt-dev perl perl-dev perl-utils \
-    perl-module-build perl-app-cpanminus gnupg perl-par-packer
+RUN apk --no-cache add \
+    bash git curl make gcc musl-dev openssl openssl-dev libxslt \
+    libxslt-dev libgcrypt-dev perl perl-dev perl-utils unzip \
+    perl-module-build perl-app-cpanminus gnupg  
 
-RUN curl -L https://cpan.metacpan.org/authors/id/R/RA/RADIATOR/Net-SSLeay-1.86_07.tar.gz | tar xz
+RUN cpan install CPAN
+RUN cpan install PAR::Packer
+RUN cpan install Archive::Zip
+RUN cpan install Net::SSLeay
+RUN cpan install IO::Socket::SSL
+RUN cpan install LWP::Protocol::https
+RUN cpan install Business::ISBN
+RUN cpan install Business::ISMN
+RUN cpan install Business::ISSN
+RUN cpan install Class::Accessor
+RUN cpan install Data::Compare
+RUN cpan install Data::Dump
+RUN cpan install Data::Uniqid
+RUN cpan install DateTime::Calendar::Julian
+RUN cpan install DateTime::Format::Builder
+RUN cpan install Encode::EUCJPASCII
+RUN cpan install Encode::HanExtra
+RUN cpan install Encode::JIS2K
+RUN cpan install File::Slurper
+RUN cpan install Lingua::Translit
+RUN cpan install List::AllUtils
+RUN cpan install List::MoreUtils
+RUN cpan install List::MoreUtils::XS
+RUN cpan install Log::Log4perl
+RUN cpan install PerlIO::utf8_strict
+RUN cpan install Regexp::Common
+RUN cpan install Sort::Key
+RUN cpan install Text::BibTeX
+RUN cpan install Text::CSV
+RUN cpan install Text::CSV_XS
+RUN cpan install Text::Roman
+RUN cpan install Unicode::Collate
+RUN cpan install Unicode::GCString
+RUN cpan install Unicode::LineBreak
+RUN cpan install XML::LibXML
+RUN cpan install XML::LibXML::Simple
+RUN cpan install XML::LibXSLT
+RUN cpan install XML::Writer
+RUN cpan install autovivification
+RUN cpan install Config::AutoConf
+RUN cpan install ExtUtils::LibBuilder
+RUN cpan install File::Which
+RUN cpan install Test::Differences
+RUN cpan install IO::String
+RUN cpan install Unicode::Normalize
 
-WORKDIR /Net-SSLeay-1.86_07
-RUN perl Makefile.PL && make test && make install
+RUN apk add perl-par-packer
 
-WORKDIR /biber
+ADD biberbuild.sh /
 
-RUN curl -L https://sourceforge.net/projects/biblatex-biber/files/biblatex-biber/current/biblatex-biber.tar.gz/download | \
-    tar xz --strip 1 -C /biber
-
-RUN perl ./Build.PL
-RUN ./Build installdeps
-
-WORKDIR /
-
-RUN rm -rf /biber
-
-WORKDIR /biber
-
-ADD biberbuild.sh /biber
-
-CMD ["./biberbuild.sh"]
+CMD ["/biberbuild.sh"]
