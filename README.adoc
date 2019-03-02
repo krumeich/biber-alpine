@@ -14,16 +14,19 @@ to build the image. This takes some time, as all the perl dependencies are
 downloaded and installed. Then run
 
 ----
-docker run -v $PWD:/opt krumeich/biber-alpine
+docker run -v $PWD:/usr/local/bin krumeich/biber-alpine
 ----
 
-to build the biber binary. Mounting the `$PWD` as `/opt` make the
-directory visible in which the build process installs the binary
+to build the biber binary. Mounting the `$PWD` as `/usr/local/bin` to make the
+directory visible in which the build process installs the binary.
 
 == Notes
 
-* As of Feb 2019 Alpine bundles OpenSSL 1.1.1, which defaults to TLS 1.3. The
-  Perl library Net::SSLEay on CPAN is version 1.8.5, which does not support this
-  version of OpenSSL. For the time being, we manually install an updated version
-  of Net::SSLeay (1.8.6_07), to be removed once the patches have made it into
-  the distribution.
+* Passing `-e branch=<branchname>` causes the branch `<branchname>` to be
+  built. If the parameter is omitted, `branch` will default to `master`:
++
+----
+docker run -v $PWD:/usr/local/bin -e branch=krumeich/musl krumeich/biber-alpine
+---- 
+
+  
