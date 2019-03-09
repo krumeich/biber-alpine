@@ -29,4 +29,10 @@ directory visible in which the build process installs the binary.
 docker run -v $PWD:/usr/local/bin -e branch=krumeich/musl krumeich/biber-alpine
 ---- 
 
-  
+* Alternatively, if you have `make` installed, use `make image` to create the
+  image, then use `make biber` to build biber. To pass a particular branch name,
+  set the environment variabe `BRANCH` on the same command line:
++   
+----
+BRANCH=krumeich/musl make biber
+----
