@@ -61,6 +61,8 @@ docker run -v $PWD:/usr/local/bin -e repo=krumeich/biber krumeich/biber-alpine
 Of course you can combine both variants to build an arbitrary branch from an
 arbitrary biber fork.
 
+==   Building and Testing with make
+
 * Alternatively, if you have `make` installed, use `make image` to create the
   image, then use `make biber` to build biber. To pass a particular branch name,
   set the environment variables `BRANCH` and/or `REPO` on the same command line:
