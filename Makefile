@@ -20,6 +20,9 @@ test: $(BIBER_BINARY) test-image
 clean:
 	rm -f $(BIBER_BINARY) $(BIBER_ARCHIVE)
 
+upload:	test
+	scp $(BIBER_ARCHIVE) krumeich@frs.sourceforge.net:/home/pfs/p/biblatex-biber/biblatex-biber/development/binaries/Linux-musl
+
 $(BIBER_BINARY): biber
 
 $(BIBER_ARCHIVE): $(BIBER_BINARY)
