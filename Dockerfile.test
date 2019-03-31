@@ -1,0 +1,7 @@
+FROM alpine:3.8
+
+ADD test.bcf /
+ADD test.bib /
+ADD bibertest.sh /
+
+ENTRYPOINT [ "./bibertest.sh" ]

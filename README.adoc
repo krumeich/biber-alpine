@@ -3,8 +3,10 @@
 The TeX Live distribution does not provide biber for MUSL based Linux distros
 such as Alpine.
 
-This project provides the means to build biber under Alpine Linux from the
-source. Run
+== Building
+
+This project provides the means to build and test biber under Alpine Linux from the
+source.
 
 ----
 docker build -t krumeich/biber-alpine .
@@ -17,8 +19,28 @@ downloaded and installed. Then run
 docker run -v $PWD:/usr/local/bin krumeich/biber-alpine
 ----
 
-to build the biber binary. Mounting the `$PWD` as `/usr/local/bin` to make the
+to build the biber binary. Mounting the `$PWD` as `/usr/local/bin` makes the
 directory visible in which the build process installs the binary.
+
+== Testing
+
+To test the build the binary should be run in an environment that does not
+contain the build infrastructure, such as Perl and all the required
+libraries. This project also provides a test environment. Run
+
+----
+docker build $(CACHE_OPTION) -f Dockerfile.test --tag krumeich/biber-test .
+----
+
+to build the image for the test environment. Then run
+
+----
+docker run --rm -v $(PWD):/usr/local/bin krumeich/biber-test
+----
+
+to run simple tests to validate the build. Again, the current directory mounted
+into the container to access the binary which as been produced in the previous
+steps.
 
 == Notes
 
@@ -46,3 +68,8 @@ arbitrary biber fork.
 ----
 BRANCH=krumeich/musl REPO=krumeich/biber make biber
 ----
+
+* Consequently, run `make test` to build the test environment and run the validation.
+
+* If you are completely lazy, then just run `make all` to build all images, the
+  biber binary and run the test in one go.
