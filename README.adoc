@@ -29,10 +29,20 @@ directory visible in which the build process installs the binary.
 docker run -v $PWD:/usr/local/bin -e branch=krumeich/musl krumeich/biber-alpine
 ---- 
 
+* Passing `-e repo=<reponame>` causes the repository `<reponame>` to be
+  built. If the parameter is omitted, `repo` will default to `plk/biber`:
++
+----
+docker run -v $PWD:/usr/local/bin -e repo=krumeich/biber krumeich/biber-alpine
+----
+
+Of course you can combine both variants to build an arbitrary branch from an
+arbitrary biber fork.
+
 * Alternatively, if you have `make` installed, use `make image` to create the
   image, then use `make biber` to build biber. To pass a particular branch name,
-  set the environment variabe `BRANCH` on the same command line:
+  set the environment variables `BRANCH` and/or `REPO` on the same command line:
 +   
 ----
-BRANCH=krumeich/musl make biber
+BRANCH=krumeich/musl REPO=krumeich/biber make biber
 ----

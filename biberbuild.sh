@@ -1,10 +1,11 @@
 #!/bin/sh
 
-BIBER_BRANCH=${branch:-master}
+BIBER_BRANCH=${branch:-dev}
+BIBER_REPO=${repo:-plk/biber}
 
-echo "Building branch: ${BIBER_BRANCH}"
+echo "Building branch: ${BIBER_BRANCH} of ${BIBER_REPO}"
 
-git clone https://github.com/krumeich/biber.git
+git clone https://github.com/${BIBER_REPO}.git
 cd biber
 git checkout ${BIBER_BRANCH}
 
