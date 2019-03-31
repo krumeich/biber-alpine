@@ -1,5 +1,5 @@
 BIBER_BINARY := biber-linux_x86_64-musl
-BIBER_ARCHIVE :=$(BIBER_BINARY).tar.gz
+BIBER_ARCHIVE := $(BIBER_BINARY).tar.gz
 
 .PHONY: all image biber test test-image clean upload
 
@@ -20,7 +20,7 @@ test: $(BIBER_BINARY) test-image
 clean:
 	rm -f $(BIBER_BINARY) $(BIBER_ARCHIVE)
 
-upload:	test
+upload:	test $(BIBER_ARCHIVE)
 	scp $(BIBER_ARCHIVE) krumeich@frs.sourceforge.net:/home/pfs/p/biblatex-biber/biblatex-biber/development/binaries/Linux-musl
 
 $(BIBER_BINARY): biber
