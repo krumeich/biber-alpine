@@ -6,7 +6,7 @@ such as Alpine.
 == Building
 
 This project provides the means to build and test biber under Alpine Linux from the
-source.
+source. Run
 
 ----
 docker build -t krumeich/biber-alpine .
@@ -29,7 +29,7 @@ contain the build infrastructure, such as Perl and all the required
 libraries. This project also provides a test environment. Run
 
 ----
-docker build $(CACHE_OPTION) -f Dockerfile.test --tag krumeich/biber-test .
+docker build -f Dockerfile.test --tag krumeich/biber-test .
 ----
 
 to build the image for the test environment. Then run
@@ -38,14 +38,14 @@ to build the image for the test environment. Then run
 docker run --rm -v $(PWD):/usr/local/bin krumeich/biber-test
 ----
 
-to run simple tests to validate the build. Again, the current directory mounted
+to run simple tests to validate the build. Again, the current directory is mounted
 into the container to access the binary which as been produced in the previous
 steps.
 
 == Notes
 
 * Passing `-e branch=<branchname>` causes the branch `<branchname>` to be
-  built. If the parameter is omitted, `branch` will default to `master`:
+  built. If the parameter is omitted, `branch` will default to `dev`:
 +
 ----
 docker run -v $PWD:/usr/local/bin -e branch=krumeich/musl krumeich/biber-alpine
