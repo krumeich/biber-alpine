@@ -2,6 +2,7 @@
 
 BIBER_BRANCH=${branch:-dev}
 BIBER_REPO=${repo:-plk/biber}
+BIBER_BINARY=biber
 
 echo "Building branch: ${BIBER_BRANCH} of ${BIBER_REPO}"
 
@@ -14,5 +15,5 @@ perl ./Build.PL
     cd ./dist/linux_x86_64-musl && ./build.sh
 
 if [ -f biber-linux_x86_64-musl ]; then
-    cp biber-linux_x86_64-musl /usr/local/bin
+    cp biber-linux_x86_64-musl /usr/local/bin/biber
 fi
