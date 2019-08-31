@@ -1,11 +1,10 @@
-FROM alpine:3.8
+FROM scottw/alpine-perl:5.30
 
 RUN apk update && apk upgrade
 
 RUN apk --no-cache add \
     bash git curl make gcc musl-dev openssl openssl-dev libxslt \
-    libxslt-dev libgcrypt-dev perl perl-dev perl-utils unzip \
-    perl-module-build perl-app-cpanminus gnupg  
+    libxslt-dev libgcrypt-dev unzip gnupg
 
 RUN cpan install CPAN
 RUN cpan install PAR::Packer
