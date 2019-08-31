@@ -7,7 +7,7 @@ RUN apk --no-cache add \
     libxslt-dev libgcrypt-dev unzip gnupg
 
 RUN cpan install CPAN
-RUN cpan install PAR::Packer
+RUN cpan install inc::latest
 RUN cpan install Archive::Zip
 RUN cpan install Net::SSLeay
 RUN cpan install IO::Socket::SSL
@@ -51,8 +51,13 @@ RUN cpan install File::Which
 RUN cpan install Test::Differences
 RUN cpan install IO::String
 RUN cpan install Unicode::Normalize
+RUN cpan install Getopt::ArgvFile
+RUN cpan install Module::ScanDeps
+RUN cpan install PAR
+RUN cpan install PAR::Dist
+RUN perl -MCPAN -e 'my $c = "CPAN::HandleConfig"; $c->load(doit => 1, autoconfig => 1); $c->edit(recommends_policy => "0"); $c->commit'
+RUN cpan install PAR::Packer
 
-RUN apk add perl-par-packer
 
 ADD biberbuild.sh /
 
