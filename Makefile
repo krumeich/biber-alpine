@@ -1,5 +1,5 @@
 BIBER_BINARY := biber
-BIBER_ARCHIVE := $(BIBER_BINARY).tar.gz
+BIBER_ARCHIVE := biber-linux_x86_64-musl.tar.gz
 OTHER_BINARIES := biblex bibparse dumpnames
 
 
@@ -11,7 +11,7 @@ image:
 	docker build $(CACHE_OPTION) -f Dockerfile.build --tag krumeich/biber-alpine .
 
 biber: image
-	docker run --rm -v $(PWD):/usr/local/bin -e BIBER_DEV_TESTS=true -e branch=$(BRANCH) -e repo=$(REPO) krumeich/biber-alpine
+	docker run --rm -v $(PWD):/opt -e BIBER_DEV_TESTS=true -e branch=$(BRANCH) -e repo=$(REPO) krumeich/biber-alpine
 
 test-image:
 	docker build $(CACHE_OPTION) -f Dockerfile.test --tag krumeich/biber-test .
