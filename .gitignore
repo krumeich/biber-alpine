@@ -1,5 +1,13 @@
+# Emacs backup files
 *~
+
+# Build artefacts
 biber
+biblex
+bibparse
+dumpnames
+
+# Other
 README.html
 biber.tar.gz
 biber-linux_x86_64-musl
