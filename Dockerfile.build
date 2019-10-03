@@ -6,7 +6,10 @@ RUN apk --no-cache add \
     bash git curl make gcc musl-dev openssl openssl-dev libxslt \
     libxslt-dev libgcrypt-dev unzip gnupg
 
+ENV PERL_TEST_POD=1
 RUN cpan install CPAN
+RUN cpan install Test::Regexp
+RUN cpan install Test::Pod
 RUN cpan install inc::latest
 RUN cpan install Archive::Zip
 RUN cpan install Net::SSLeay
@@ -31,6 +34,7 @@ RUN cpan install List::MoreUtils
 RUN cpan install List::MoreUtils::XS
 RUN cpan install Log::Log4perl
 RUN cpan install PerlIO::utf8_strict
+RUN cpan install Parse::RecDescent
 RUN cpan install Regexp::Common
 RUN cpan install Sort::Key
 RUN cpan install Text::BibTeX
