@@ -16,11 +16,11 @@ to build the image. This takes some time, as all the perl dependencies are
 downloaded and installed. Then run
 
 ----
-docker run -v $PWD:/usr/local/bin krumeich/biber-alpine
+docker run -v $PWD:/opt krumeich/biber-alpine
 ----
 
-to build the biber binary. Mounting the `$PWD` as `/usr/local/bin` makes the
-directory visible in which the build process installs the binary.
+to build the biber binary. Mounting the `$PWD` as `/opt` makes the
+directory visible in which the build process installs the packed binary.
 
 == Testing
 

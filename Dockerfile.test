@@ -1,6 +1,6 @@
 FROM alpine:3.8
 
-ADD test.bcf /
+ADD test-dev.bcf /
 ADD test.bib /
 ADD bibertest.sh /
 
