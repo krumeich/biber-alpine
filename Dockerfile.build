@@ -11,7 +11,8 @@ RUN cpan install CPAN
 RUN cpan install Test::Regexp
 RUN cpan install Test::Pod
 RUN cpan install inc::latest
-RUN cpan install Archive::Zip
+#RUN cpan install Archive::Zip
+RUN git clone https://github.com/redhotpenguin/perl-Archive-Zip.git && cd perl-Archive-Zip/ && perl Makefile.PL && make && make test && make install && cd /
 RUN cpan install Net::SSLeay
 RUN cpan install IO::Socket::SSL
 RUN cpan install LWP::Protocol::https
