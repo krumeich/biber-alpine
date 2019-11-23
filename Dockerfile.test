@@ -4,4 +4,4 @@ ADD test-dev.bcf /
 ADD test.bib /
 ADD bibertest.sh /
 
-ENTRYPOINT [ "./bibertest.sh" ]
+CMD [ "./bibertest.sh" ]
