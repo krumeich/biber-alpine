@@ -1,4 +1,4 @@
-FROM scottw/alpine-perl:5.30
+FROM scottw/alpine-perl
 
 RUN apk update && apk upgrade
 
