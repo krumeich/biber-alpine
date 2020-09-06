@@ -1,4 +1,4 @@
-FROM scottw/alpine-perl
+FROM scottw/alpine-perl:5.30.0
 
 RUN apk update && apk upgrade
 
@@ -6,62 +6,66 @@ RUN apk --no-cache add \
     bash git curl make gcc musl-dev openssl openssl-dev libxslt \
     libxslt-dev libgcrypt-dev unzip gnupg
 
+ENV PERL_CPANM_OPT --verbose --mirror https://cpan.metacpan.org --mirror-only
 ENV PERL_TEST_POD=1
-RUN cpan install CPAN
-RUN cpan install Test::Regexp
-RUN cpan install Test::Pod
-RUN cpan install inc::latest
-#RUN cpan install Archive::Zip
+
+RUN cpanm CPAN
+RUN cpanm Test::Regexp
+RUN cpanm Test::Pod
+RUN cpanm inc::latest
+#RUN cpanm Archive::Zip
 RUN git clone https://github.com/redhotpenguin/perl-Archive-Zip.git && cd perl-Archive-Zip/ && perl Makefile.PL && make && make test && make install && cd /
-RUN cpan install Net::SSLeay
-RUN cpan install IO::Socket::SSL
-RUN cpan install LWP::Protocol::https
-RUN cpan install Business::ISBN
-RUN cpan install Business::ISMN
-RUN cpan install Business::ISSN
-RUN cpan install Class::Accessor
-RUN cpan install Data::Compare
-RUN cpan install Data::Dump
-RUN cpan install Data::Uniqid
-RUN cpan install DateTime::Calendar::Julian
-RUN cpan install DateTime::Format::Builder
-RUN cpan install Encode::EUCJPASCII
-RUN cpan install Encode::HanExtra
-RUN cpan install Encode::JIS2K
-RUN cpan install File::Slurper
-RUN cpan install Lingua::Translit
-RUN cpan install List::AllUtils
-RUN cpan install List::MoreUtils
-RUN cpan install List::MoreUtils::XS
-RUN cpan install Log::Log4perl
-RUN cpan install PerlIO::utf8_strict
-RUN cpan install Parse::RecDescent
-RUN cpan install Regexp::Common
-RUN cpan install Sort::Key
-RUN cpan install Text::BibTeX
-RUN cpan install Text::CSV
-RUN cpan install Text::CSV_XS
-RUN cpan install Text::Roman
-RUN cpan install Unicode::Collate
-RUN cpan install Unicode::GCString
-RUN cpan install Unicode::LineBreak
-RUN cpan install XML::LibXML
-RUN cpan install XML::LibXML::Simple
-RUN cpan install XML::LibXSLT
-RUN cpan install XML::Writer
-RUN cpan install autovivification
-RUN cpan install Config::AutoConf
-RUN cpan install ExtUtils::LibBuilder
-RUN cpan install File::Which
-RUN cpan install Test::Differences
-RUN cpan install IO::String
-RUN cpan install Unicode::Normalize
-RUN cpan install Getopt::ArgvFile
-RUN cpan install Module::ScanDeps
-RUN cpan install PAR
-RUN cpan install PAR::Dist
+RUN cpanm Net::SSLeay
+RUN cpanm IO::Socket::SSL
+RUN cpanm LWP::Protocol::https
+RUN cpanm Business::ISBN
+RUN cpanm Business::ISMN
+RUN cpanm Business::ISSN
+RUN cpanm Class::Accessor
+RUN cpanm Data::Compare
+RUN cpanm Data::Dump
+RUN cpanm Data::Uniqid
+RUN cpanm Dist::CheckConflicts
+#RUN cpanm Module::Runtime
+RUN cpanm DateTime::Calendar::Julian
+RUN cpanm DateTime::Format::Builder
+RUN cpanm Encode::EUCJPASCII
+RUN cpanm Encode::HanExtra
+RUN cpanm Encode::JIS2K
+RUN cpanm File::Slurper
+RUN cpanm Lingua::Translit
+RUN cpanm List::AllUtils
+RUN cpanm List::MoreUtils
+RUN cpanm List::MoreUtils::XS
+RUN cpanm Log::Log4perl
+RUN cpanm PerlIO::utf8_strict
+RUN cpanm Parse::RecDescent
+RUN cpanm Regexp::Common
+RUN cpanm Sort::Key
+RUN cpanm Text::BibTeX
+RUN cpanm Text::CSV
+RUN cpanm Text::CSV_XS
+RUN cpanm Text::Roman
+RUN cpanm Unicode::Collate
+RUN cpanm Unicode::GCString
+RUN cpanm Unicode::LineBreak
+RUN cpanm XML::LibXML
+RUN cpanm XML::LibXML::Simple
+RUN cpanm XML::LibXSLT
+RUN cpanm XML::Writer
+RUN cpanm autovivification
+RUN cpanm Config::AutoConf
+RUN cpanm ExtUtils::LibBuilder
+RUN cpanm File::Which
+RUN cpanm Test::Differences
+RUN cpanm IO::String
+RUN cpanm Unicode::Normalize
+RUN cpanm Getopt::ArgvFile
+RUN cpanm Module::ScanDeps
+RUN cpanm PAR
+RUN cpanm PAR::Dist
 RUN perl -MCPAN -e 'my $c = "CPAN::HandleConfig"; $c->load(doit => 1, autoconfig => 1); $c->edit(recommends_policy => "0"); $c->commit'
-RUN cpan install PAR::Packer
+RUN cpanm PAR::Packer
 
 
 ADD biberbuild.sh /
