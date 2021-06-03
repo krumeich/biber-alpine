@@ -1,9 +1,9 @@
-FROM scottw/alpine-perl:5.32.0
+FROM alpine
 
 RUN apk update && apk upgrade
 
 RUN apk --no-cache add \
-    bash git curl make gcc musl-dev openssl openssl-dev libxslt \
+    wget perl perl-dev perl-app-cpanminus bash git curl make gcc musl-dev openssl openssl-dev libxslt \
     libxslt-dev libgcrypt-dev unzip gnupg xz-libs
 
 ENV PERL_CPANM_OPT --verbose --mirror https://cpan.metacpan.org --mirror-only
