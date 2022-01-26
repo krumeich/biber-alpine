@@ -3,7 +3,7 @@ BIBER_ARCHIVE := biber-linux_x86_64-musl.tar.gz
 OTHER_BINARIES := biblex bibparse dumpnames
 
 
-.PHONY: all image biber test test-image clean upload
+.PHONY: all image biber test test-image clean upload package
 
 all: test
 
@@ -22,8 +22,10 @@ test: $(BIBER_BINARY) test-image
 clean:
 	rm -f $(BIBER_BINARY) $(BIBER_ARCHIVE) $(OTHER_BINARIES)
 
-upload:	test $(BIBER_ARCHIVE)
+upload:	test package
 	scp $(BIBER_ARCHIVE) krumeich@frs.sourceforge.net:/home/pfs/p/biblatex-biber/biblatex-biber/development/binaries/Linux-musl
+
+package: $(BIBER_ARCHIVE)
 
 $(BIBER_ARCHIVE): $(BIBER_BINARY)
 	tar czf $(BIBER_ARCHIVE) $(BIBER_BINARY)
