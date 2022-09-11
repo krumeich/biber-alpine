@@ -14,8 +14,8 @@ git checkout ${BIBER_BRANCH}
 
 perl ./Build.PL
 ./Build installdeps && ./Build test && ./Build install && \
-    cd ./dist/linux_${ARCH}-musl && ./build.sh
+    cd ./dist/linux-musl_${ARCH} && ./build.sh
 
-if [ -f biber-linux_${ARCH}-musl ]; then
-    cp biber-linux_${ARCH}-musl /usr/local/bin/biber
+if [ -f biber-linux-musl_${ARCH} ]; then
+    cp biber-linux-musl_${ARCH} /usr/local/bin/biber
 fi
