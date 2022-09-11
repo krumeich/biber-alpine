@@ -12,4 +12,8 @@ README.html
 biber.tar.gz
 biber-linux_x86_64-musl
 biber-linux_x86_64-musl.tar.gz
+biber-linux-musl
+biber-linux-musl.tar.gz
 *.blg
+linux-musl.tar.gz
+linux-musl/

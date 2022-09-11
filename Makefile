@@ -1,9 +1,11 @@
 BIBER_BINARY := biber
 BIBER_ARCHIVE := biber-linux_x86_64-musl.tar.gz
+CTAN_DIR := biber-linux-musl
+CTAN_ARCHIVE := $(CTAN_DIR).tar.gz
 OTHER_BINARIES := biblex bibparse dumpnames
 
 
-.PHONY: all image biber test test-image clean upload package
+.PHONY: all image biber test test-image clean sourceforge package ctan
 
 all: test
 
@@ -20,14 +22,17 @@ test: $(BIBER_BINARY) test-image
 	docker run --rm -v $(PWD):/usr/local/bin -e branch=$(BRANCH) -e repo=$(REPO) krumeich/biber-test
 
 clean:
-	rm -f $(BIBER_BINARY) $(BIBER_ARCHIVE) $(OTHER_BINARIES)
+	rm -rf $(BIBER_BINARY) $(BIBER_ARCHIVE) $(OTHER_BINARIES) $(CTAN_DIR) $(CTAN_ARCHIVE)
 
-upload:	test package
+sourceforge:	test package
 	scp $(BIBER_ARCHIVE) krumeich@frs.sourceforge.net:/home/pfs/p/biblatex-biber/biblatex-biber/development/binaries/Linux-musl
 
 package: $(BIBER_ARCHIVE)
 
 $(BIBER_ARCHIVE): $(BIBER_BINARY)
-	tar czf $(BIBER_ARCHIVE) $(BIBER_BINARY)
+	tar czvf $(BIBER_ARCHIVE) $(BIBER_BINARY)
+
+ctan: $(BIBER_BINARY)
+	./biberpackage.sh
 
 
