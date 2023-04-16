@@ -4,7 +4,7 @@ RUN apk update && apk upgrade
 
 RUN apk --no-cache add \
     wget perl perl-dev perl-app-cpanminus bash git curl make gcc musl-dev openssl openssl-dev libxslt \
-    libxslt-dev libgcrypt-dev unzip gnupg xz-libs
+    libxslt-dev libgcrypt-dev unzip gnupg xz-libs chrpath
 
 ENV PERL_CPANM_OPT --verbose --mirror https://cpan.metacpan.org --mirror-only
 ENV PERL_TEST_POD=1
@@ -67,6 +67,7 @@ RUN cpanm PAR::Dist
 RUN perl -MCPAN -e 'my $c = "CPAN::HandleConfig"; $c->load(doit => 1, autoconfig => 1); $c->edit(recommends_policy => "0"); $c->commit'
 RUN cpanm PAR::Packer
 
+RUN chrpath -kd /usr/local/lib/perl5/site_perl/auto/XML/LibXML/LibXML.so /usr/local/lib/perl5/site_perl/auto/XML/LibXSLT/LibXSLT.so /usr/local/lib/perl5/site_perl/auto/Net/SSLeay/SSLeay.so
 
 ADD biberbuild.sh /
 
