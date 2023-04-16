@@ -1,5 +1,5 @@
 BIBER_BINARY := biber
-BIBER_ARCHIVE := biber-linux_x86_64-musl.tar.gz
+BIBER_ARCHIVE := biber-linux-musl_x86_64.tar.gz
 CTAN_DIR := biber-linux-musl
 CTAN_ARCHIVE := $(CTAN_DIR).tar.gz
 OTHER_BINARIES := biblex bibparse dumpnames

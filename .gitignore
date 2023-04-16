@@ -10,8 +10,8 @@ dumpnames
 # Other
 README.html
 biber.tar.gz
-biber-linux_x86_64-musl
-biber-linux_x86_64-musl.tar.gz
+biber-linux-musl_x86_64
+biber-linux-musl_x86_64.tar.gz
 biber-linux-musl
 biber-linux-musl.tar.gz
 *.blg

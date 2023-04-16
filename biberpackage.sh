@@ -15,5 +15,5 @@ These are biber binaries for the ${METAPLATFORM} platform.
 See https://ctan.org/pkg/biber for documentation, sources, and all else.
 EOF
 
-tar cf ${METAPLATFORM_DIR}.tar.gz ${METAPLATFORM_DIR}
+tar czf ${METAPLATFORM_DIR}.tar.gz ${METAPLATFORM_DIR}
 
