@@ -4,7 +4,7 @@ BIBER_VERSION=$(docker run --rm -v $(pwd):/usr/local/bin alpine /usr/local/bin/b
 PRODUCT=biber
 METAPLATFORM=linux-musl
 METAPLATFORM_DIR=${PRODUCT}-${METAPLATFORM}
-ARCHIVE=${PRODUCT}-${BIBER_VERSION}-${METAPLATFORM}_x86_64.tar.gz
+ARCHIVE=${PRODUCT}-${BIBER_VERSION}-${METAPLATFORM}_x86_64.tar
 
 rm -rf ${METAPLATFORM_DIR}
 mkdir -p ${METAPLATFORM_DIR}
