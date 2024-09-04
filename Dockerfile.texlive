@@ -1,0 +1,19 @@
+FROM alpine
+
+RUN apk add perl curl git
+
+ENV PATH=/opt/biber:/usr/local/texlive/2024/bin/x86_64-linuxmusl:$PATH
+#ARG ctanmirror=http://ftp.fau.de/ctan
+ARG ctanmirror=https://mirror.n-design.de
+
+WORKDIR /installer
+
+RUN curl -L ${ctanmirror}/texlive/tlnet/install-tl-unx.tar.gz | tar xz --strip-components 1 && \
+    ./install-tl --scheme basic --no-interaction -repository=${ctanmirror}/texlive/tlnet/ && \
+    tlmgr install latexmk biblatex
+
+RUN git clone https://github.com/n-design/gematik-biblio.git
+
+WORKDIR gematik-biblio
+
+CMD "latexmk" "konnektor-ptv5-5.1.0"
