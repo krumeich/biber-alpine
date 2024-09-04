@@ -38,6 +38,7 @@ RUN cpanm List::AllUtils
 RUN cpanm List::MoreUtils
 RUN cpanm List::MoreUtils::XS
 RUN cpanm Log::Log4perl
+RUN cpanm Mozilla::CA
 RUN cpanm PerlIO::utf8_strict
 RUN cpanm Parse::RecDescent
 RUN cpanm Regexp::Common
