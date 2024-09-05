@@ -18,7 +18,7 @@ biber:
 test-image:
 	docker build $(CACHE_OPTION) -f Dockerfile.test --tag krumeich/biber-test .
 
-test: $(BIBER_BINARY) test-image
+test: test-image
 	docker run --rm -v $(PWD):/usr/local/bin -e branch=$(BRANCH) -e repo=$(REPO) krumeich/biber-test
 
 clean:
