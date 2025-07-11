@@ -17,3 +17,4 @@ biber-linux-musl.tar.gz
 *.blg
 linux-musl.tar.gz
 linux-musl/
+.DS_Store

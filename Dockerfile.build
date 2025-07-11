@@ -6,7 +6,7 @@ RUN apk --no-cache add \
     wget perl perl-dev perl-app-cpanminus bash git curl make gcc musl-dev openssl openssl-dev libxslt \
     libxslt-dev libgcrypt-dev unzip gnupg xz-libs chrpath
 
-ENV PERL_CPANM_OPT --verbose --mirror https://cpan.metacpan.org --mirror-only
+ENV PERL_CPANM_OPT --verbose --mirror https://www.cpan.org --mirror-only --notest
 ENV PERL_TEST_POD=1
 
 RUN cpanm CPAN
