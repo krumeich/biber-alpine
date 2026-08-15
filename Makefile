@@ -13,13 +13,13 @@ image:
 	docker build $(CACHE_OPTION) -f Dockerfile.build --tag krumeich/biber-alpine .
 
 biber:
-	docker run --rm -v $(PWD):/opt/biber-alpine -e branch=$(BRANCH) -e repo=$(REPO) krumeich/biber-alpine:latest
+	docker run --rm -v $(PWD):/opt/ -e branch=$(BRANCH) -e repo=$(REPO) krumeich/biber-alpine:latest
 
 test-image:
 	docker build $(CACHE_OPTION) -f Dockerfile.test --tag krumeich/biber-test .
 
 test: test-image
-	docker run --rm -v $(PWD):/usr/local/bin -e branch=$(BRANCH) -e repo=$(REPO) krumeich/biber-test
+	docker run --rm -v $(PWD):/opt/bin -e branch=$(BRANCH) -e repo=$(REPO) krumeich/biber-test
 
 clean:
 	rm -rf $(BIBER_BINARY) $(BIBER_ARCHIVE) $(OTHER_BINARIES) $(CTAN_DIR) $(CTAN_ARCHIVE)

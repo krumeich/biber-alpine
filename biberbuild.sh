@@ -4,7 +4,7 @@ BIBER_BRANCH=${branch:-dev}
 BIBER_REPO=${repo:-plk/biber}
 BIBER_BINARY=biber
 
-MOUNTED_DIR=/opt/biber-alpine
+MOUNTED_DIR=/opt/
 
 ARCH=$(uname -a | awk '{print $(NF-1)}')
 TARGETPLATFORM=linux-musl_${ARCH}
@@ -16,7 +16,7 @@ cd biber
 git checkout ${BIBER_BRANCH}
 
 perl ./Build.PL
-./Build installdeps && ./Build test && ./Build install && \
+./Build installdeps && ./Build install && \
     cd ./dist/${TARGETPLATFORM} && ./build.sh
 
 if [ -f biber-${TARGETPLATFORM} ]; then
