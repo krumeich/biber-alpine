@@ -4,6 +4,8 @@ BIBER_BRANCH=${branch:-dev}
 BIBER_REPO=${repo:-plk/biber}
 BIBER_BINARY=biber
 
+MOUNTED_DIR=/opt/biber-alpine
+
 ARCH=$(uname -a | awk '{print $(NF-1)}')
 TARGETPLATFORM=linux-musl_${ARCH}
 
@@ -18,5 +20,5 @@ perl ./Build.PL
     cd ./dist/${TARGETPLATFORM} && ./build.sh
 
 if [ -f biber-${TARGETPLATFORM} ]; then
-    cp biber-${TARGETPLATFORM} /usr/local/bin/biber
+    cp biber-${TARGETPLATFORM} ${MOUNTED_DIR}/biber
 fi

@@ -13,7 +13,7 @@ image:
 	docker build $(CACHE_OPTION) -f Dockerfile.build --tag krumeich/biber-alpine .
 
 biber:
-	docker run --rm -v $(PWD):/opt -e branch=$(BRANCH) -e repo=$(REPO) krumeich/biber-alpine:biber220
+	docker run --rm -v $(PWD):/opt/biber-alpine -e branch=$(BRANCH) -e repo=$(REPO) krumeich/biber-alpine:latest
 
 test-image:
 	docker build $(CACHE_OPTION) -f Dockerfile.test --tag krumeich/biber-test .
