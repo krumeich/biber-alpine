@@ -26,13 +26,14 @@ RUN cpanm Data::Compare
 RUN cpanm Data::Dump
 RUN cpanm Data::Uniqid
 RUN cpanm Dist::CheckConflicts
-#RUN cpanm Module::Runtime
+RUN cpanm Module::Runtime
 RUN cpanm DateTime::Calendar::Julian
 RUN cpanm DateTime::Format::Builder
 RUN cpanm Encode::EUCJPASCII
 RUN cpanm Encode::HanExtra
 RUN cpanm Encode::JIS2K
 RUN cpanm File::Slurper
+RUN cpanm IPC::Run3
 RUN cpanm Lingua::Translit
 RUN cpanm List::AllUtils
 RUN cpanm List::MoreUtils
