@@ -44,6 +44,8 @@ RUN cpanm PerlIO::utf8_strict
 RUN cpanm Parse::RecDescent
 RUN cpanm Regexp::Common
 RUN cpanm Sort::Key
+RUN cpanm Specio::PP
+RUN cpanm Specio::XS
 RUN cpanm Text::BibTeX
 RUN cpanm Text::CSV
 RUN cpanm Text::CSV_XS
